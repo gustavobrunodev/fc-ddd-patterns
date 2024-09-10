@@ -4,7 +4,7 @@ import EnviaConsoleLog2Handler from "./handler/envia-console-log-2.handler";
 import CustomerCreatedEvent from "./customer-created.event";
 
 describe("CustomerCreatedEvent tests", () => {
-  it("should notify all event handlers", () => {
+  it.only("should notify all event handlers", () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler1 = new EnviaConsoleLog1Handler();
     const eventHandler2 = new EnviaConsoleLog2Handler();
@@ -15,10 +15,10 @@ describe("CustomerCreatedEvent tests", () => {
     eventDispatcher.register("CustomerCreatedEvent", eventHandler2);
 
     expect(
-      eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]
+      eventDispatcher.getEventHandlers["CustomerCreatedEvent"][0]
     ).toMatchObject(eventHandler1);
     expect(
-      eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]
+      eventDispatcher.getEventHandlers["CustomerCreatedEvent"][1]
     ).toMatchObject(eventHandler2);
 
     const customerCreatedEvent = new CustomerCreatedEvent({
